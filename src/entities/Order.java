@@ -58,7 +58,7 @@ public class Order {
 	}
 	
 	public Double total() {
-		double total = 0;
+		Double total = 0.0;
 		for (OrderItem obj : items) {
 			total+= obj.SubTotal();
 		}
