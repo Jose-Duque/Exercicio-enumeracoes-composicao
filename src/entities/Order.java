@@ -64,7 +64,7 @@ public class Order {
 	public Double total() {
 		Double total = 0.0;
 		for (OrderItem obj : items) {
-			total+= obj.SubTotal();
+			total+= obj.subTotal();
 		}
 		return total;
 	}
@@ -72,24 +72,18 @@ public class Order {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("ORDER SUMMARY:\n");
 		sb.append("Order moment: ");
 		sb.append(sdf.format(moment) + "\n");
 		sb.append("Order status: ");
 		sb.append(status + "\n");
 		sb.append("Client: ");
-		sb.append(client.getName() + " ");
-		sb.append("(" + sdf.format(client.getBirthDate())+") - ");
-		sb.append(client.getEmail() + "\n");
+		sb.append(client + "\n");
 		sb.append("Order items:\n");
-		for (OrderItem obj : items) {
-			sb.append(obj.getProduct().getName() + ", ");
-			sb.append("$ " + obj.getProduct().getPrice() + ", ");
-			sb.append("Quantity: " +obj.getQuantity() + ", ");
-			sb.append("Subtotal: $ " +obj.SubTotal());
+		for (OrderItem item : items) {
+			sb.append(item + "\n");
 		}
-		sb.append("Total price: $\n");
-		sb.append(total());
+		sb.append("Total price: $");
+		sb.append(String.format("%.2f", total()));
 		return sb.toString();
 	}
 	
